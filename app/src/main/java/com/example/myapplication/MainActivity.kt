@@ -19,5 +19,17 @@ class MainActivity : AppCompatActivity() {
         binding.builderButton.setOnClickListener {
             startActivity(Intent(this, BuilderActivity::class.java))
         }
+
+        binding.asyncButton.setOnClickListener {
+            startActivity(Intent(this, AsyncAndDeferredActivity::class.java))
+        }
+
+        binding.contextButton.setOnClickListener {
+            startActivity(Intent(this, CoroutineContextActivity::class.java))
+        }
+
+        binding.structuredConcurrencyButton.setOnClickListener {
+            startActivity(Intent(this, StructuredConcurrencyActivity::class.java))
+        }
     }
 }

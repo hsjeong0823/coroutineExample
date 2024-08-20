@@ -14,15 +14,6 @@ import kotlinx.coroutines.newFixedThreadPoolContext
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 
-/**
- * Copyright ⓒ 2024 Starbucks Coffee Company. All Rights Reserved.| Confidential
- *
- * @ Description :
- * @ Class : DispatcherActivity
- * @ Created by : jeonghwasu
- * @ Created Date : 2024. 08. 19.
- */
-
 class DispatcherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDispatcherBinding
     override fun onCreate(savedInstanceState: Bundle?) {

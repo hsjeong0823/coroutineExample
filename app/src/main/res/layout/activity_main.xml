@@ -20,13 +20,31 @@
                 android:id="@+id/dispatcherButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dispatcher" />
+                android:text="Coroutine Dispatcher" />
 
             <Button
                 android:id="@+id/builderButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Coroutine Builder" />
+
+            <Button
+                android:id="@+id/asyncButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coroutine Async" />
+
+            <Button
+                android:id="@+id/contextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coroutine Context" />
+
+            <Button
+                android:id="@+id/structuredConcurrencyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coroutine Structured Concurrency" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,41 +16,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <Button
-                android:id="@+id/joinButton"
+                android:id="@+id/jobButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Join" />
-
-            <Button
-                android:id="@+id/joinAllButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Join All" />
-
-            <Button
-                android:id="@+id/lazyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Lazy" />
+                android:text="Coroutine 상속되지 않는 Job" />
 
             <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Coroutine Cancel" />
-
-            <Button
-                android:id="@+id/cancelAndJoinButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Cancel and Join" />
-
-            <Button
-                android:id="@+id/isActiveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CoroutineScope isActive" />
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

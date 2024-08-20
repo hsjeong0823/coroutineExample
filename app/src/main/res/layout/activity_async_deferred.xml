@@ -16,41 +16,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <Button
-                android:id="@+id/joinButton"
+                android:id="@+id/awaitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Join" />
+                android:text="Coroutine Async - await" />
 
             <Button
-                android:id="@+id/joinAllButton"
+                android:id="@+id/awaitAllButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Join All" />
+                android:text="Coroutine Async - awaitAll" />
 
             <Button
-                android:id="@+id/lazyButton"
+                android:id="@+id/withContextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Lazy" />
-
-            <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Cancel" />
-
-            <Button
-                android:id="@+id/cancelAndJoinButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Cancel and Join" />
-
-            <Button
-                android:id="@+id/isActiveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CoroutineScope isActive" />
-
+                android:text="Coroutine withContext" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
