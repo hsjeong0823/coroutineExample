@@ -36,6 +36,9 @@
 
         <activity
             android:name=".StructuredConcurrencyActivity" />
+
+        <activity
+            android:name=".CoroutineExceptionActivity" />
     </application>
 
 </manifest>

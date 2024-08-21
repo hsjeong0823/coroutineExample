@@ -31,5 +31,9 @@ class MainActivity : AppCompatActivity() {
         binding.structuredConcurrencyButton.setOnClickListener {
             startActivity(Intent(this, StructuredConcurrencyActivity::class.java))
         }
+
+        binding.coroutineExceptionButton.setOnClickListener {
+            startActivity(Intent(this, CoroutineExceptionActivity::class.java))
+        }
     }
 }

@@ -16,52 +16,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <Button
-                android:id="@+id/jobButton"
+                android:id="@+id/supervisorJobButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine 상속되지 않는 Job" />
+                android:text="Coroutine SupervisorJob 사용" />
 
             <Button
-                android:id="@+id/cancelButton"
+                android:id="@+id/supervisorJobWithCoroutineScopeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Cancel" />
+                android:text="Coroutine SupervisorJob(CoroutineScope)" />
 
             <Button
-                android:id="@+id/coroutineScopeButton"
+                android:id="@+id/supervisorScopeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoroutineScope" />
+                android:text="Coroutine supervisorScope" />
 
             <Button
-                android:id="@+id/coroutineScopeNewButton"
+                android:id="@+id/coroutineExceptionHandlerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoroutineScope 기존 범위 벗어나기" />
+                android:text="CoroutineExceptionHandler" />
 
             <Button
-                android:id="@+id/coroutineScopeJobButton"
+                android:id="@+id/coroutineTryCatchButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoroutineScope Job 구조화 깨기" />
+                android:text="Coroutine try catch 사용" />
 
             <Button
-                android:id="@+id/coroutineScopeNewJobButton"
+                android:id="@+id/coroutineWithTimeOutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoroutineScope Job 구조화 깨기(Job 사용)" />
+                android:text="Coroutine withTimeout" />
 
             <Button
-                android:id="@+id/coroutineScopeNewJobParentButton"
+                android:id="@+id/coroutineWithTimeOutOrNullButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoroutineScope Job의 parent 명시" />
-
-            <Button
-                android:id="@+id/coroutineRunBlockingAndLaunchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine runBlocking과 luanch 차이" />
+                android:text="Coroutine withTimeoutOrNull" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
