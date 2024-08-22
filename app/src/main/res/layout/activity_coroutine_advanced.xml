@@ -5,8 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,53 +15,43 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <Button
-                android:id="@+id/dispatcherButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Dispatcher" />
 
             <Button
-                android:id="@+id/builderButton"
+                android:id="@+id/volatileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Builder" />
+                android:text="Coroutine Volatile" />
 
             <Button
-                android:id="@+id/asyncButton"
+                android:id="@+id/mutexButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Async" />
+                android:text="Coroutine Mutex" />
 
             <Button
-                android:id="@+id/contextButton"
+                android:id="@+id/reentrantLockButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Context" />
+                android:text="Coroutine ReentrantLock" />
 
             <Button
-                android:id="@+id/structuredConcurrencyButton"
+                android:id="@+id/coroutineStartDefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Structured Concurrency" />
+                android:text="CoroutineStart.DEFAULT" />
 
             <Button
-                android:id="@+id/coroutineExceptionButton"
+                android:id="@+id/coroutineStartAtomicButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine Exception" />
+                android:text="CoroutineStart.ATOMIC" />
 
             <Button
-                android:id="@+id/suspendFuncButton"
+                android:id="@+id/coroutineStartUndispatchedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coroutine suspend func" />
+                android:text="CoroutineStart.UNDISPATCHED" />
 
-            <Button
-                android:id="@+id/coroutineAdvancedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coroutine Advanced" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

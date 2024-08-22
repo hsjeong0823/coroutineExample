@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- QR코드 인식 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 내부 저장소 요청 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- QR코드 인식, 전자영수증 저장, 받은 선물 상세 화면 이미지 저장 등등 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -39,6 +53,12 @@
 
         <activity
             android:name=".CoroutineExceptionActivity" />
+
+        <activity
+            android:name=".SuspendFunActivity" />
+
+        <activity
+            android:name=".CoroutineAdvancedActivity" />
     </application>
 
 </manifest>

@@ -35,5 +35,13 @@ class MainActivity : AppCompatActivity() {
         binding.coroutineExceptionButton.setOnClickListener {
             startActivity(Intent(this, CoroutineExceptionActivity::class.java))
         }
+
+        binding.suspendFuncButton.setOnClickListener {
+            startActivity(Intent(this, SuspendFunActivity::class.java))
+        }
+
+        binding.coroutineAdvancedButton.setOnClickListener {
+            startActivity(Intent(this, CoroutineAdvancedActivity::class.java))
+        }
     }
 }
