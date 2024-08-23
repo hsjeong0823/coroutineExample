@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.databinding.ActivityCoroutineAdvancedBinding
 import com.example.myapplication.databinding.ActivitySuspendFunctionBinding
+import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,10 +16,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.util.concurrent.locks.ReentrantLock
+import kotlin.coroutines.resume
 
 class CoroutineAdvancedActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoroutineAdvancedBinding
@@ -48,6 +51,14 @@ class CoroutineAdvancedActivity : AppCompatActivity() {
 
         binding.coroutineStartUndispatchedButton.setOnClickListener {
             coroutineStartUndispatched()
+        }
+
+        binding.coroutineDispatchersUnconfinedButton.setOnClickListener {
+            coroutineDispatchersUnconfined()
+        }
+
+        binding.suspendCancellableCoroutineButton.setOnClickListener {
+            suspendCancellableCoroutine()
         }
     }
 
@@ -124,7 +135,7 @@ class CoroutineAdvancedActivity : AppCompatActivity() {
         Log.i("hsjeong", "${Thread.currentThread().name} 실행 1")
     }
 
-    // CoroutineStart.ATOMIC (job.cancel 시 대기중인 코루틴이 취소되지 않아 "실행 1" 로그만 출력)
+    // CoroutineStart.ATOMIC (job.cancel 시 대기중인 코루틴이 취소되지 않아 "실행 1", "실행 2" 모두 출력)
     @OptIn(ExperimentalCoroutinesApi::class)    // 실험버전임을 알리는 어노테이션
     private fun coroutineStartAtomic() = runBlocking {
         val job = launch(start = CoroutineStart.ATOMIC) {
@@ -134,13 +145,35 @@ class CoroutineAdvancedActivity : AppCompatActivity() {
         Log.i("hsjeong", "${Thread.currentThread().name} 실행 1")
     }
 
-    // CoroutineStart.UNDISPATCHED
+    // CoroutineStart.UNDISPATCHED (CoroutineDispatcher 객체의 작업 대기열을 거치지 않고 곧바로 호출자의 스레드에 할당되 실행됨. "실행 2"가 먼저찍힘)
     private fun coroutineStartUndispatched() = runBlocking {
         val job = launch(start = CoroutineStart.UNDISPATCHED) {
             Log.i("hsjeong", "${Thread.currentThread().name} 실행 2")
+            delay(100L)
+            Log.i("hsjeong", "${Thread.currentThread().name} 일시 중단 이후에는 CoroutineDispatcher를 거쳐 작업대기열에 있다가 실행된다.")
         }
-        job.cancel()
+       // job.cancel()  // cancel 시 "실행 2" , "실행 1" 로그는 찍히지만 delay 후 launch 코루틴은 CoroutineDispatcher를 거쳐 다시 실행되기 때문에 이후 로그는 찍히지 않는다.
         Log.i("hsjeong", "${Thread.currentThread().name} 실행 1")
+    }
+
+    // Dispatchers.Unconfined 는 CoroutineStart.UNDISPATCHED 와 비슷하게 자신을 실행시킨 스레드에서 곧바로 실행되지만 일시 중단 후 재개될때의 동작이 다르다
+    // 무제한 디스패처를 사용해 실행되는 경우 어떤 스레드가 코루틴을 재개 시키는지 예측하기 어렵기 때문에 테스트 등 특수 상황에서만 사용한다.
+    private fun coroutineDispatchersUnconfined() = runBlocking {
+        Log.i("hsjeong", "${Thread.currentThread().name} 실행 1")
+        val job = launch(Dispatchers.Unconfined) {
+            Log.i("hsjeong", "${Thread.currentThread().name} 실행 2")
+            delay(100L)
+            Log.i("hsjeong", "${Thread.currentThread().name} 일시 중단 이후에는 delay를 실행시킨 스레드에서 재개된다.")
+        }
+        Log.i("hsjeong", "${Thread.currentThread().name} 실행 3")
+    }
+
+    private fun suspendCancellableCoroutine() = runBlocking {
+        val result = suspendCancellableCoroutine<String> { continuation: CancellableContinuation<String> ->
+            Log.i("hsjeong", "${Thread.currentThread().name} 실행 1")
+            continuation.resume("실행 1결과")
+        }
+        Log.i("hsjeong", "${Thread.currentThread().name} 실행 2 $result")
     }
 
 
