@@ -59,6 +59,12 @@
 
         <activity
             android:name=".CoroutineAdvancedActivity" />
+
+        <activity
+            android:name=".ChannelActivity" />
+
+        <activity
+            android:name=".FlowActivity" />
     </application>
 
 </manifest>

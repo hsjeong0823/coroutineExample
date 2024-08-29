@@ -63,6 +63,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Coroutine Advanced" />
+
+            <Button
+                android:id="@+id/coroutineChannelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coroutine Channel" />
+
+            <Button
+                android:id="@+id/coroutineFlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coroutine Flow" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

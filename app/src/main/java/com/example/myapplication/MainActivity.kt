@@ -43,5 +43,13 @@ class MainActivity : AppCompatActivity() {
         binding.coroutineAdvancedButton.setOnClickListener {
             startActivity(Intent(this, CoroutineAdvancedActivity::class.java))
         }
+
+        binding.coroutineChannelButton.setOnClickListener {
+            startActivity(Intent(this, ChannelActivity::class.java))
+        }
+
+        binding.coroutineFlowButton.setOnClickListener {
+            startActivity(Intent(this, FlowActivity::class.java))
+        }
     }
 }
