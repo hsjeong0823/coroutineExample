@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,6 +24,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class CoroutineAdvancedActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoroutineAdvancedBinding
@@ -176,6 +179,46 @@ class CoroutineAdvancedActivity : AppCompatActivity() {
         Log.i("hsjeong", "${Thread.currentThread().name} 실행 2 $result")
     }
 
+    // 콜백을 사용하여 대기하는 예제 코드 - 시작
+    // 콜백 인터페이스
+    interface Callback {
+        fun onComplete(result: String)
+    }
+
+    // 가상의 비동기 작업을 콜백을 사용해 시뮬레이션하는 함수
+    private fun asyncTaskWithCallback(index: Int, callback: Callback) {
+        // 비동기 작업 수행 (예: 네트워크 요청)
+        Handler(Looper.getMainLooper()).postDelayed({
+            // 비동기 작업 완료 후 콜백 호출
+            callback.onComplete("Result from task $index")
+        }, (1000..3000).random().toLong()) // 1~3초 랜덤 지연
+    }
+
+    // 콜백을 코루틴으로 변환하는 함수
+    private suspend fun asyncTask(index: Int): String = suspendCoroutine { continuation ->
+        asyncTaskWithCallback(index, object : Callback {
+            override fun onComplete(result: String) {
+                continuation.resume(result)
+            }
+        })
+    }
+
+    fun request() {
+        // Android의 코루틴 스코프에서 실행 (예: lifecycleScope, viewModelScope 등)
+        /*lifecycleScope.launch {
+            // 3개의 비동기 작업을 동시에 실행
+            val results = listOf(
+                async { asyncTask(1) },
+                async { asyncTask(2) },
+                async { asyncTask(3) }
+            ).awaitAll()
+
+            // 모든 결과를 합친 후 처리
+            val finalResult = results.joinToString(", ")
+            LogUtil.d(TAG, "hsjeong end $finalResult")
+        }*/
+    }
+    // 콜백을 사용하여 대기하는 예제 코드 - 끝
 
     private fun getElapsedTime(startTime: Long): String = "지난 시간: ${System.currentTimeMillis() - startTime}ms"
 }

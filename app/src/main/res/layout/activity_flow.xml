@@ -26,6 +26,12 @@
                     android:layout_height="wrap_content"
                     android:text="1. Coroutine Flow(asFlow)" />
 
+                <Button
+                    android:id="@+id/flowBuilderButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Coroutine Flow Builder" />
+
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

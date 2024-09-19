@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.myapplication.databinding.ActivityFlowBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 
 class FlowActivity : AppCompatActivity() {
@@ -18,6 +19,10 @@ class FlowActivity : AppCompatActivity() {
         binding.asFlowButton.setOnClickListener {
             flowConvert()
         }
+
+        binding.flowBuilderButton.setOnClickListener {
+            flowBuilder()
+        }
     }
 
     private fun flowConvert() = runBlocking {
@@ -27,13 +32,37 @@ class FlowActivity : AppCompatActivity() {
         }
 
         val function = suspend {
-            // 중단함수를 람도식으로 만든 것
+            // 중단함수를 람다식으로 만든 것
             delay(1000)
             "UserName"
         }
 
         function.asFlow().collect {
             Log.i("hsjeong", "${Thread.currentThread().name} $it")
+        }
+
+        //함수 참조값을 사용하여 적용
+        ::getUserName.asFlow().collect {
+            Log.i("hsjeong", "${Thread.currentThread().name} $it")
+        }
+    }
+
+    suspend fun getUserName(): String {
+        delay(1000)
+        return "UserName"
+    }
+
+    private fun flowBuilder() = runBlocking {
+        val startTime = System.currentTimeMillis()
+        makeFlow().collect {
+            Log.i("hsjeong", "${Thread.currentThread().name} ${getElapsedTime(startTime)} flowBuilder value : $it")
+        }
+    }
+
+    private fun makeFlow() = flow {
+        repeat(3) {
+            delay(1000)
+            emit(it)
         }
     }
 
